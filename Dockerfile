@@ -1,12 +1,11 @@
 # Pull base image.
-FROM dockerfile/nodejs
+FROM node:latest
 
 # global install gulp and jshint
-RUN npm install -g gulp jshint
+RUN npm install -g --quiet --no-progress gulp jshint
 
 # Define working directory.
 WORKDIR /mnt
 
-ADD kickoff.sh /root/kickoff.sh
-
-ENTRYPOINT ["/root/kickoff.sh"]
+CMD ["-"]
+ENTRYPOINT ["gulp", "--silent", "--no-color"]
